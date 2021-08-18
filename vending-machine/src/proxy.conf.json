@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "https://vendingappthemba.herokuapp.com/vend/getAllProducts",
+        "secure": false
+    }
+}

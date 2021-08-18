@@ -1,0 +1,62 @@
+
+  <div class="full-row">
+    <div class="float-left-60">
+      <div class="products__container">
+<ng-container *ngFor="let product of products">
+  <section class="product__item">
+     <!--  <figure class="product__figure">
+          <img *ngIf="product.image" class="product__image" [src]="product.image" alt="" />
+      </figure> -->
+      <!-- [routerLink]="['/product/' + product.productId]"   -->
+      <a (click)="productNameAssign(product.name,product.productId)" class="cursor-pointer">
+          <div class="product__content">
+              <strong class="product__title">{{ product.name }}</strong>
+
+              <em class="product__price">{{ product.itemPrice }}p</em>
+          </div>
+          <div class="product__availability">           
+            <em class="">Available : {{ product.available }}</em>
+        </div>
+      </a>
+  </section>
+</ng-container>
+</div>
+</div>
+<div class="border-class"></div>
+<div class="float-right-40" style="border-right: 1px solid #ddd;">
+
+  <div class="full-row">
+    <div class="float-left-30"><div class="full-row-img img-color1"><img src="assets/img/img1.png" (click)="conversion(img1)" class=" cursor-pointer"><p class="pshow" (click)="conversion(img1)">R10</p></div></div>
+    <div class="float-left-30"><div class="full-row-img img-color2"><img src="assets/img/img2.png" (click)="conversion(img2)" class=" cursor-pointer"><p class="pshow" (click)="conversion(img2)">R1</p></div></div>
+    <div class="float-left-30"><div class="full-row-img img-color3"><img src="assets/img/img3.png" (click)="conversion(img3)" class=" cursor-pointer"><p class="pshow" (click)="conversion(img3)">R20</p></div></div>
+    <div class="float-left-30"><div class="full-row-img img-color4"><img src="assets/img/img4.png" (click)="conversion(img4)" class=" cursor-pointer"><p class="pshow" (click)="conversion(img4)">R2</p></div></div>
+    <div class="float-left-30"><div class="full-row-img img-color5"><img src="assets/img/img5.png" (click)="conversion(img5)" class=" cursor-pointer"><p class="pshow" (click)="conversion(img5)">50c</p></div></div>
+    <div class="float-left-30"><div class="full-row-img img-color6"><img src="assets/img/img6.png" (click)="conversion(img6)" class=" cursor-pointer"><p class="pshow" (click)="conversion(img6)">R50</p></div></div>
+    <div class="float-left-30" style="clear:both;float:none;width: 100%;margin:auto;position:relative;"><div class="full-row-img img-color7"><img width="100" src="assets/img/img7.png" class=" cursor-pointer right10" (click)="conversion(img7)"><p class="pshow finalpshow" (click)="conversion(img7)">R5</p></div></div>
+  </div>
+  <div class="full-row" style="clear: both;">
+  <form [formGroup]="checkoutForm" (ngSubmit)="vendingCalc()">
+    <input type="text" name="selection" formControlName="selection" required="true" placeholder="XXX..." value="{{pname}}" maxlength="" disabled>
+    <span style="font-size:28px;vertical-align: middle;">R</span><input type="number" name="coinage" formControlName="coinage" required="true" placeholder="0.00" step="0.01" value="{{img_amt | number : '1.0-2'}}" pattern="d+(.d{2})?" disabled>
+    <button type="submit" [ngClass]="btnClass==1 ? 'dark-gray' : ''">Vend</button>
+  </form>
+  </div>
+  <p *ngIf="msgreturn!='Success!!'" class="text-danger">{{msgreturn}}</p>
+  <div class="section">
+    <div class="tray">
+      <span *ngIf="msgreturn=='Success!!'">{{productlabel}}</span>
+    </div>
+    <div class="coin_return">
+      <span *ngFor="let t of counter(tnumberOf50Cents)"><img src="assets/img/img5.png" width="40"></span>
+      <span *ngFor="let t of counter(tnumberOf1Rands)"><img src="assets/img/img2.png" width="40"></span>
+      <span *ngFor="let t of counter(tnumberOf2Rands)"><img src="assets/img/img4.png" width="40"></span>
+      <span *ngFor="let t of counter(tnumberOf5Rands)"><img src="assets/img/img7.png" width="40"></span>
+      <span *ngFor="let t of counter(tnumberOf10Rands)"><img src="assets/img/img1.png" width="40"></span>
+      <span *ngFor="let t of counter(tnumberOf20Rands)"><img src="assets/img/img3.png" width="40"></span>
+      <span *ngFor="let t of counter(tnumberOf50Rands)"><img src="assets/img/img6.png" width="40"></span>
+	  <p class="output">{{tchangeAmount}}</p>
+    </div>
+  </div>
+  
+</div>
+</div>
